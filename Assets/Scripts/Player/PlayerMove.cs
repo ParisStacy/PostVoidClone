@@ -9,12 +9,12 @@ public class PlayerMove : MonoBehaviour
     private float moveSpeed, crouchSpeed, jumpForce, gravity;
 
     //Backing Variables
-    float _currentSpeed, _vMovement, _cameraZ;
-    bool crouched, jumping, grounded, overHead;
+    float _currentSpeed, _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength;
+    bool crouched, jumping, grounded, overHead, sliding;
 
     //Vectors
     Vector2 _moveInput;
-    Vector3 _moveDirection;
+    Vector3 _moveDirection, _slideDirection;
 
     //Components
     CharacterController cc;
@@ -33,14 +33,26 @@ public class PlayerMove : MonoBehaviour
         _moveInput.x = Input.GetAxis("Horizontal");
         _moveInput.y = Input.GetAxis("Vertical");
 
-        _currentSpeed = (crouched) ? crouchSpeed : moveSpeed;
+        _currentSpeed = moveSpeed;
 
         jumping = Input.GetKeyDown(KeyCode.Space);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            sliding = true;
+            _slideDecay = 1.2f;
+            _decayRate = .0005f;
+            _slideDirection = transform.forward * _currentSpeed;
+            _startingSlideSpeed = (_moveInput != Vector2.zero) ? _currentSpeed : 0;
+        }
+
+        cc.height = (sliding) ? .7f : 2;
+        _groundedRayLength = (sliding) ? .1f : .9f;
 
         //Check Grounded / Above
         checkGrounded();
         checkAbove();
         cameraEffects();
+
 
         //Configure Movement Vector
         _moveDirection = (_moveInput.x * transform.right + _moveInput.y * transform.forward).normalized;
@@ -50,19 +62,23 @@ public class PlayerMove : MonoBehaviour
         if (!grounded) _vMovement -= gravity * Time.deltaTime;
         else _vMovement = 0;
 
-        if (grounded && jumping) _vMovement += jumpForce;
+        if (grounded && jumping && !sliding) _vMovement += jumpForce;
         if (overHead) _vMovement = -1;
 
+        //Slide
+        if (sliding) slide();
+
         //Apply movement
-        cc.Move(_moveDirection * Time.deltaTime);
+        if (!sliding) cc.Move(_moveDirection * Time.deltaTime);
         cc.Move(new Vector3(0, _vMovement, 0) * Time.deltaTime);
 
+        
     }
 
     //Check if the player is on the ground
     void checkGrounded() {
         RaycastHit hit;
-        grounded = Physics.SphereCast(transform.position, .2f, Vector3.down, out hit, .9f);
+        grounded = Physics.SphereCast(transform.position, .2f, Vector3.down, out hit, _groundedRayLength);
     }
 
     //Check if there is anything above the player
@@ -76,11 +92,26 @@ public class PlayerMove : MonoBehaviour
 
         //Camera Lean on Move
         float _targetZ;
-        _targetZ = (_moveInput.x != 0) ? -3 * _moveInput.x : 0;
-        _cameraZ = Mathf.Lerp(_cameraZ, _targetZ, .05f);
+        _targetZ = (_moveInput.x != 0) ? -2 * _moveInput.x : 0;
+        _cameraZ = Mathf.Lerp(_cameraZ, _targetZ, .1f);
 
-        camera.transform.localEulerAngles = new Vector3(camera.transform.rotation.x, 0, _cameraZ);
+        camera.transform.localEulerAngles = new Vector3(0, 0, _cameraZ);
 
 
+    }
+
+    //Slide Player
+    void slide() {
+        _slideDirection = _slideDirection.normalized * _startingSlideSpeed * _slideDecay;
+        cc.Move(_slideDirection * Time.deltaTime);
+        if (Input.GetKeyUp(KeyCode.LeftShift)) {
+            sliding = false;
+            cc.Move(new Vector3(0, .7f, 0));
+        }
+
+        //Decay Slide
+        _slideDecay -= _decayRate;
+        _slideDecay = Mathf.Clamp(_slideDecay, 0, 1.5f);
+        _decayRate += .000005f;
     }
 }
