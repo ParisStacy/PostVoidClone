@@ -8,16 +8,17 @@ public class PlayerLook : MonoBehaviour
     float sensitivity;
 
     Vector2 mouseLook;
-    GameObject controller;
+    PlayerMove controller;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        controller = transform.parent.gameObject;
+        controller = transform.parent.parent.GetComponent<PlayerMove>();
     }
 
     void Update()
     {
+        //MouseLook
         mouseLook += new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         mouseLook *= sensitivity;
 
