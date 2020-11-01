@@ -38,7 +38,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             sliding = true;
             _slideDecay = 1.2f;
-            _decayRate = .0005f;
+            _decayRate = .0008f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
         }
