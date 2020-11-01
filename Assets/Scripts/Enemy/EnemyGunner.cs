@@ -85,13 +85,13 @@ public class EnemyGunner : MonoBehaviour
 
         int ranNum = Random.Range(0, 100);
 
-        if (ranNum < 30) {
+        if (ranNum < 33) {
             myState = enemyGunnerState.move;
             ChooseNavPoint(player, moveOffset);
             NavAgent.SetDestination(navPoint);
             _t = moveTime;
             Debug.Log("Moving!");
-        } else if (ranNum > 30 && ranNum < 55) {
+        } else if (ranNum > 33 && ranNum < 66) {
             myState = enemyGunnerState.dash;
             ChooseNavPoint(gameObject, dashOffset);
             Debug.Log("Dashing!");
