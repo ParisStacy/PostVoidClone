@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     private float moveSpeed, crouchSpeed, jumpForce, gravity;
 
     //Backing Variables
-    float _currentSpeed, _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength;
+    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength;
     bool crouched, jumping, grounded, overHead, sliding;
 
     //Vectors
@@ -33,18 +33,17 @@ public class PlayerMove : MonoBehaviour
         _moveInput.x = Input.GetAxis("Horizontal");
         _moveInput.y = Input.GetAxis("Vertical");
 
-        _currentSpeed = moveSpeed;
-
         jumping = Input.GetKeyDown(KeyCode.Space);
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             sliding = true;
             _slideDecay = 1.2f;
             _decayRate = .0005f;
-            _slideDirection = transform.forward * _currentSpeed;
-            _startingSlideSpeed = (_moveInput != Vector2.zero) ? _currentSpeed : 0;
+            _slideDirection = transform.forward * moveSpeed;
+            _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
         }
 
+        //Determine Controller Height
         cc.height = (sliding) ? .7f : 2;
         _groundedRayLength = (sliding) ? .1f : .9f;
 
@@ -56,7 +55,7 @@ public class PlayerMove : MonoBehaviour
 
         //Configure Movement Vector
         _moveDirection = (_moveInput.x * transform.right + _moveInput.y * transform.forward).normalized;
-        _moveDirection *= _currentSpeed;
+        _moveDirection *= moveSpeed;
 
         //Configure Vertical Movement
         if (!grounded) _vMovement -= gravity * Time.deltaTime;
@@ -102,6 +101,8 @@ public class PlayerMove : MonoBehaviour
 
     //Slide Player
     void slide() {
+
+        //Slide
         _slideDirection = _slideDirection.normalized * _startingSlideSpeed * _slideDecay;
         cc.Move(_slideDirection * Time.deltaTime);
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
