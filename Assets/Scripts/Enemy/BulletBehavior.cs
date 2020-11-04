@@ -8,14 +8,21 @@ public class BulletBehavior : MonoBehaviour
 
     void Start()
     {
-        
-
-
+        transform.LookAt(GameObject.Find("Camera").transform.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+    }
+
+    void OnTriggerEnter(Collider impactObject) {
         
+        if (impactObject.gameObject == GameObject.Find("Player")) {
+            impactObject.gameObject.GetComponent<IDamage<int>>().Damage(5);
+        }
+
+        Destroy(gameObject);
+
     }
 }
