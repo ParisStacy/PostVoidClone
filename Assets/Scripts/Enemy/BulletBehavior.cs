@@ -20,6 +20,8 @@ public class BulletBehavior : MonoBehaviour
         
         if (impactObject.gameObject == GameObject.Find("Player")) {
             impactObject.gameObject.GetComponent<IDamage<int>>().Damage(5);
+        } else {
+            Destroy(gameObject);
         }
 
         Destroy(gameObject);

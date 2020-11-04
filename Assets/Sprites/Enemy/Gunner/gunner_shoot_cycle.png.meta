@@ -1,9 +1,6 @@
 fileFormatVersion: 2
 guid: f96cc81b942eda44982cd568157d64bc
 TextureImporter:
-<<<<<<< HEAD
-  internalIDToNameTable: []
-=======
   internalIDToNameTable:
   - first:
       213: 6255779521842173402
@@ -17,16 +14,11 @@ TextureImporter:
   - first:
       213: 7881866711497786382
     second: gunner_shoot_cycle_3
->>>>>>> main
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-<<<<<<< HEAD
-    enableMipMap: 1
-=======
     enableMipMap: 0
->>>>>>> main
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -52,18 +44,6 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
-    wrapU: -1
-    wrapV: -1
-    wrapW: -1
-  nPOTScale: 1
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 0
-=======
     filterMode: 0
     aniso: -1
     mipBias: -100
@@ -74,7 +54,6 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
->>>>>>> main
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,32 +62,23 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-<<<<<<< HEAD
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 0
-=======
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
->>>>>>> main
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-<<<<<<< HEAD
     textureFormat: -1
-=======
-    textureFormat: 4
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,20 +89,8 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -143,9 +101,8 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
->>>>>>> main
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -154,22 +111,15 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
-=======
     sprites:
     - serializedVersion: 2
       name: gunner_shoot_cycle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 23
         y: 0
-        width: 90
-        height: 110
+        width: 45
+        height: 95
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,10 +137,10 @@ TextureImporter:
       name: gunner_shoot_cycle_1
       rect:
         serializedVersion: 2
-        x: 90
+        x: 113
         y: 0
-        width: 90
-        height: 110
+        width: 45
+        height: 95
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,10 +158,10 @@ TextureImporter:
       name: gunner_shoot_cycle_2
       rect:
         serializedVersion: 2
-        x: 180
+        x: 203
         y: 0
-        width: 90
-        height: 110
+        width: 45
+        height: 104
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,10 +179,10 @@ TextureImporter:
       name: gunner_shoot_cycle_3
       rect:
         serializedVersion: 2
-        x: 270
+        x: 293
         y: 0
-        width: 90
-        height: 110
+        width: 45
+        height: 104
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,8 +199,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5cbee8b04dd07d24fad66e1c71e22ad1
->>>>>>> main
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
