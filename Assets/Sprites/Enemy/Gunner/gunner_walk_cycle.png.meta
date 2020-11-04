@@ -1,23 +1,21 @@
 fileFormatVersion: 2
-guid: 01839ad2d2fb50547b2737d9d8c3ea48
+guid: 0b0c2a224abb633429bcf47d06617ffe
 TextureImporter:
-<<<<<<< HEAD
-  internalIDToNameTable: []
-=======
   internalIDToNameTable:
   - first:
-      213: -3393248672962232380
-    second: gunner_idle_0
->>>>>>> main
+      213: 6470024581352438699
+    second: gunner_walk_cycle_0
+  - first:
+      213: -5508977250473876383
+    second: gunner_walk_cycle_1
+  - first:
+      213: -3053227785652450500
+    second: gunner_walk_cycle_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-<<<<<<< HEAD
-    enableMipMap: 1
-=======
     enableMipMap: 0
->>>>>>> main
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -43,18 +41,6 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
-    wrapU: -1
-    wrapV: -1
-    wrapW: -1
-  nPOTScale: 1
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 0
-=======
     filterMode: 0
     aniso: -1
     mipBias: -100
@@ -65,7 +51,6 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
->>>>>>> main
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -74,15 +59,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-<<<<<<< HEAD
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 0
-=======
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
->>>>>>> main
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -95,9 +74,6 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-<<<<<<< HEAD
-    textureFormat: -1
-=======
     textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
@@ -135,7 +111,6 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
->>>>>>> main
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -145,16 +120,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
-=======
     sprites:
     - serializedVersion: 2
-      name: gunner_idle_0
+      name: gunner_walk_cycle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -168,8 +136,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cf35856f42c8e0d0800000000000000
-      internalID: -3393248672962232380
+      spriteID: babbe8bb3152ac950800000000000000
+      internalID: 6470024581352438699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gunner_walk_cycle_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 90
+        height: 110
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164ebc5e06e2c83b0800000000000000
+      internalID: -5508977250473876383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gunner_walk_cycle_2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 90
+        height: 110
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b45d17181c0a5d0800000000000000
+      internalID: -3053227785652450500
       vertices: []
       indices: 
       edges: []
@@ -177,8 +187,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cc4b28a70bfb7054db0f37c73a6703c8
->>>>>>> main
+    spriteID: a3f3ce8cf3bb08d43a0eed95e04c2f5b
     internalID: 0
     vertices: []
     indices: 
