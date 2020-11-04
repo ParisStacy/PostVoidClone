@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: gunner_shoot_ani
+  m_Name: Shooting animation
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 6255779521842173402, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
-    - time: 0.083333336
-      value: {fileID: -7069658009478258590, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
+      value: {fileID: 1847220930250897677, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
     - time: 0.16666667
-      value: {fileID: 7248913112024417270, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
+      value: {fileID: 7717326199243825646, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
     - time: 0.25
-      value: {fileID: 7881866711497786382, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
+      value: {fileID: 7717644192836735456, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
+    - time: 0.33333334
+      value: {fileID: -7163297559673614146, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
+    - time: 0.41666666
+      value: {fileID: 1096191180517277319, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +48,17 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 6255779521842173402, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
-    - {fileID: -7069658009478258590, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
-    - {fileID: 7248913112024417270, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
-    - {fileID: 7881866711497786382, guid: f96cc81b942eda44982cd568157d64bc, type: 3}
+    - {fileID: 1847220930250897677, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
+    - {fileID: 7717326199243825646, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
+    - {fileID: 7717644192836735456, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
+    - {fileID: -7163297559673614146, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
+    - {fileID: 1096191180517277319, guid: 134964fce71e9054381bd75f2ac6d34d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -74,11 +77,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.083333336
-    functionName: Fire
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

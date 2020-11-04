@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IDamage<int>
 {
     //Configurable Variables
     [SerializeField]
-    private float moveSpeed, crouchSpeed, jumpForce, gravity;
+    private float moveSpeed, jumpForce, gravity;
 
     //Backing Variables
     float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength;
+    int health = 100;
     bool crouched, jumping, grounded, overHead, sliding;
 
     //Vectors
@@ -114,5 +115,10 @@ public class PlayerMove : MonoBehaviour
         _slideDecay -= _decayRate;
         _slideDecay = Mathf.Clamp(_slideDecay, 0, 1.5f);
         _decayRate += .000005f;
+    }
+
+    public void Damage(int damageTaken) {
+        health -= damageTaken;
+        Debug.Log(health);
     }
 }
