@@ -114,7 +114,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         //Decay Slide
         _slideDecay -= _decayRate;
         _slideDecay = Mathf.Clamp(_slideDecay, 0, 1.5f);
-        _decayRate += .000005f;
+        _decayRate += .000001f;
     }
 
     public void Damage(int damageTaken) {

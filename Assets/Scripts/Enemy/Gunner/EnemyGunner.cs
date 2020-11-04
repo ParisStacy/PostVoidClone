@@ -124,7 +124,7 @@ public class EnemyGunner : MonoBehaviour
         } else if (ranNum == 2) {
             myState = enemyGunnerState.shoot;
             shotsToFire = Random.Range(1, 2);
-            _t = .333f * shotsToFire;
+            _t = .4f * shotsToFire;
             NavAgent.SetDestination(transform.position);
         }
     }
