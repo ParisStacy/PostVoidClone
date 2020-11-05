@@ -99,12 +99,13 @@ public class EnemyGunner : MonoBehaviour
         if (_t < 0 || Vector3.Distance(transform.position, navPoint) < .5f)
         {
             NavAgent.SetDestination(transform.position);
-            ChooseBehavior(0);
+            ChooseBehavior(9);
         }
     }
 
     void ChooseBehavior(int numberToSkip)
     {
+
         int ranNum = ranNum = Random.Range(0, 3);
         while (ranNum == numberToSkip) {
             ranNum = Random.Range(0, 3);
