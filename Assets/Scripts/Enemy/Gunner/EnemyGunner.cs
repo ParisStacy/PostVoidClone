@@ -109,7 +109,6 @@ public class EnemyGunner : MonoBehaviour
         int ranNum = ranNum = Random.Range(0, 3);
         while (ranNum == numberToSkip) {
             ranNum = Random.Range(0, 3);
-            Debug.Log("Check new Number");
         }
 
         if (ranNum == 0) {

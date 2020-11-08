@@ -20,6 +20,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     //Components
     CharacterController cc;
     GameObject camera;
+    [SerializeField]
+    Animator rightHandAnimator;
 
     void Start()
     {
@@ -38,11 +40,13 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             sliding = true;
-            _slideDecay = 1.2f;
-            _decayRate = .0008f;
+            _slideDecay = 1.5f;
+            _decayRate = .0005f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
         }
+
+        if (Input.GetMouseButtonDown(0)) FirePistol();
 
         //Determine Controller Height
         cc.height = (sliding) ? .7f : 2;
@@ -114,11 +118,15 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         //Decay Slide
         _slideDecay -= _decayRate;
         _slideDecay = Mathf.Clamp(_slideDecay, 0, 1.5f);
-        _decayRate += .000001f;
+        _decayRate += .000003f;
     }
 
     public void Damage(int damageTaken) {
         health -= damageTaken;
         Debug.Log(health);
+    }
+
+    public void FirePistol() {
+        rightHandAnimator.Play("RightHandPistolShoot", -1, 0);
     }
 }
