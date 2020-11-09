@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerFire : MonoBehaviour
 {
     GameObject camera;
+    PlayerLook playerLookScript;
     public GameObject bulletHolePrefab;
+
 
     void Start()
     {
         camera = transform.parent.gameObject;
+        playerLookScript = camera.GetComponent<PlayerLook>();
     }
 
     void Fire()
@@ -20,5 +23,6 @@ public class PlayerFire : MonoBehaviour
                 hit.transform.GetComponent<HitboxBehavior>().Damage(1);
             }
         }
+        playerLookScript.Recoil(3);
     }
 }
