@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyGunner : MonoBehaviour
+public class EnemyGunner : MonoBehaviour, IEnemy
 {
 
     [Header("Tuning")]
@@ -16,7 +16,7 @@ public class EnemyGunner : MonoBehaviour
 
     bool active = false;
 
-    float _t;
+    float _t, health = 9;
     int shotsToFire;
 
     Vector3 navPoint;
@@ -51,8 +51,11 @@ public class EnemyGunner : MonoBehaviour
         //Is Active?
         active = (Vector3.Distance(transform.position, player.transform.position) < detectionDistance);
 
+        //Is Dead?
+        if (health <= 0) myState = enemyGunnerState.dead;
+
         //Determine Speed
-        NavAgent.speed = (myState == enemyGunnerState.dash) ? dashSpeed : moveSpeed;
+        NavAgent.speed = Mathf.Lerp(NavAgent.speed, (myState == enemyGunnerState.dash) ? dashSpeed : moveSpeed, .01f);
 
         //Determine Update Loop if Active
         if (active)
@@ -67,6 +70,8 @@ public class EnemyGunner : MonoBehaviour
                     break;
                 case (enemyGunnerState.move):
                     UpdateMove();
+                    break;
+                case (enemyGunnerState.dead):
                     break;
             }
         }
@@ -134,6 +139,24 @@ public class EnemyGunner : MonoBehaviour
         navPoint = origin.transform.position + new Vector3(Random.Range(-range, range), 0, Random.Range(-range, range));
         while (Vector3.Distance(origin.transform.position, navPoint) < innerRange) {
             navPoint = origin.transform.position + new Vector3(Random.Range(-range, range), 0, Random.Range(-range, range));
+        }
+    }
+
+    public void takeDamage(float damage) {
+        if (myState != enemyGunnerState.dead) {
+
+            gunnerAnimator.Play("gunner_hurt_ani", -1, 0);
+            NavAgent.speed = 0;
+            health -= damage;
+
+            if (health <= 0) {
+                myState = enemyGunnerState.dead;
+                gunnerAnimator.Play("gunner_death_ani", -1, 0);
+                NavAgent.SetDestination(transform.position);
+                transform.GetChild(0).gameObject.active = false;
+                transform.GetChild(1).gameObject.active = false;
+            }
+
         }
     }
 }
