@@ -6,11 +6,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 {
     //Configurable Variables
     [SerializeField]
-    private float moveSpeed, jumpForce, gravity;
+    private float moveSpeed, jumpForce, gravity, maxHealth;
 
     //Backing Variables
-    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength;
-    int health = 100;
+    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength, _health;
     bool crouched, jumping, grounded, overHead, sliding;
 
     //Vectors
@@ -20,12 +19,17 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     //Components
     CharacterController cc;
     GameObject camera;
+    [SerializeField]
+    Animator rightHandAnimator;
+    [SerializeField]
+    GameObject healthLiquid;
 
     void Start()
     {
         //Initialize Components
         cc = GetComponent<CharacterController>();
         camera = transform.GetChild(0).gameObject;
+        _health = maxHealth;
     }
 
     void Update()
@@ -38,11 +42,13 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             sliding = true;
-            _slideDecay = 1.2f;
-            _decayRate = .0008f;
+            _slideDecay = 1.5f;
+            _decayRate = .0005f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
         }
+
+        if (Input.GetMouseButtonDown(0)) FirePistol();
 
         //Determine Controller Height
         cc.height = (sliding) ? .7f : 2;
@@ -53,6 +59,9 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         checkAbove();
         cameraEffects();
 
+        //Update Health Liquid
+        LiquidUpdate();
+        _health -= Time.deltaTime;
 
         //Configure Movement Vector
         _moveDirection = (_moveInput.x * transform.right + _moveInput.y * transform.forward).normalized;
@@ -114,11 +123,19 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         //Decay Slide
         _slideDecay -= _decayRate;
         _slideDecay = Mathf.Clamp(_slideDecay, 0, 1.5f);
-        _decayRate += .000001f;
+        _decayRate += .000003f;
     }
 
     public void Damage(int damageTaken) {
-        health -= damageTaken;
-        Debug.Log(health);
+        _health -= damageTaken;
+    }
+
+    public void FirePistol() {
+        rightHandAnimator.Play("RightHandPistolShoot", -1, 0);
+    }
+
+    public void LiquidUpdate() {
+        float healthProportion = _health / maxHealth;
+        healthLiquid.transform.localPosition = new Vector3(.88f, Mathf.Lerp(-.23f, .78f, healthProportion), 0);
     }
 }

@@ -16,15 +16,11 @@ public class BulletBehavior : MonoBehaviour
         transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
-    void OnTriggerEnter(Collider impactObject) {
-        
-        if (impactObject.gameObject == GameObject.Find("Player")) {
+    void OnCollisionEnter(Collision impactObject) {
+        if (impactObject.gameObject == gameObject.CompareTag("Player")) {
             impactObject.gameObject.GetComponent<IDamage<int>>().Damage(5);
-        } else {
-            Destroy(gameObject);
         }
 
         Destroy(gameObject);
-
     }
 }
