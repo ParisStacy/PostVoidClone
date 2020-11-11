@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     [SerializeField]
     Animator rightHandAnimator;
     [SerializeField]
-    GameObject healthLiquid;
+    GameObject idolLiquid;
 
     void Start()
     {
@@ -62,6 +62,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         //Update Health Liquid
         LiquidUpdate();
         _health -= Time.deltaTime;
+        _health = Mathf.Clamp(_health, 0, maxHealth);
 
         //Configure Movement Vector
         _moveDirection = (_moveInput.x * transform.right + _moveInput.y * transform.forward).normalized;
@@ -128,6 +129,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     public void Damage(int damageTaken) {
         _health -= damageTaken;
+        Debug.Log("Ouch!");
     }
 
     public void FirePistol() {
@@ -136,6 +138,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     public void LiquidUpdate() {
         float healthProportion = _health / maxHealth;
-        healthLiquid.transform.localPosition = new Vector3(.88f, Mathf.Lerp(-.23f, .78f, healthProportion), 0);
+        idolLiquid.transform.localPosition = new Vector3(.88f, Mathf.Lerp(-.23f, .78f, healthProportion), 0);
+    }
+
+    public void Heal() {
+        _health += 4;
     }
 }
