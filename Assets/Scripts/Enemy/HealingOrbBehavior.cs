@@ -20,7 +20,7 @@ public class HealingOrbBehavior : MonoBehaviour
         transform.position += transform.forward * speed * Time.deltaTime;
 
 
-        if (Vector3.Distance(transform.position, target.transform.position) < .5f) {
+        if (Vector3.Distance(transform.position, target.transform.position) < .2f) {
             player.GetComponent<PlayerMove>().Heal();
             Destroy(gameObject);
         }

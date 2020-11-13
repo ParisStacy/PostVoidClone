@@ -14,15 +14,18 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     //Vectors
     Vector2 _moveInput;
-    Vector3 _moveDirection, _slideDirection;
+    Vector3 _moveDirection, _slideDirection, _leftHandOrigin, _rightHandOrigin;
 
     //Components
     CharacterController cc;
     GameObject camera;
-    [SerializeField]
     Animator rightHandAnimator;
     [SerializeField]
     GameObject idolLiquid;
+    [SerializeField]
+    GameObject leftHand;
+    [SerializeField]
+    GameObject rightHand;
 
     void Start()
     {
@@ -30,6 +33,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         cc = GetComponent<CharacterController>();
         camera = transform.GetChild(0).gameObject;
         _health = maxHealth;
+        rightHandAnimator = rightHand.GetComponent<Animator>();
+
+        _rightHandOrigin = rightHand.transform.localPosition;
+        _leftHandOrigin = leftHand.transform.localPosition;
     }
 
     void Update()
@@ -107,6 +114,14 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
         camera.transform.localEulerAngles = new Vector3(0, 0, _cameraZ);
 
+        Vector3 rightHandDesired;
+        rightHandDesired = (sliding) ? (_rightHandOrigin + new Vector3(.05f, .05f, 0)) : (_rightHandOrigin);
+        Vector3 leftHandDesired;
+        leftHandDesired = (sliding) ? (_leftHandOrigin + new Vector3(.05f, -.01f, 0)) : (_leftHandOrigin);
+
+        leftHand.transform.localPosition = Vector3.Lerp(leftHand.transform.localPosition, leftHandDesired, .05f);
+        rightHand.transform.localPosition = Vector3.Lerp(rightHand.transform.localPosition, rightHandDesired, .05f);
+
 
     }
 
@@ -129,7 +144,6 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     public void Damage(int damageTaken) {
         _health -= damageTaken;
-        Debug.Log("Ouch!");
     }
 
     public void FirePistol() {
