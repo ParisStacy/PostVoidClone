@@ -26,6 +26,8 @@ public class EnemyGunner : MonoBehaviour, IEnemy
     GameObject debugTextObject;
     [SerializeField]
     Animator gunnerAnimator;
+    [SerializeField]
+    GameObject healingOrbPrefab;
 
     GameObject player;
     TextMesh stateText;
@@ -155,6 +157,7 @@ public class EnemyGunner : MonoBehaviour, IEnemy
                 NavAgent.SetDestination(transform.position);
                 transform.GetChild(0).gameObject.active = false;
                 transform.GetChild(1).gameObject.active = false;
+                Instantiate(healingOrbPrefab, transform.position + new Vector3(0, 1.7f, 0), Quaternion.identity);
             }
 
         }
