@@ -26,6 +26,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     GameObject leftHand;
     [SerializeField]
     GameObject rightHand;
+    [SerializeField]
+    GameObject slideEffect;
+    [SerializeField]
+    GameObject EnemyPrefab;
 
     void Start()
     {
@@ -37,6 +41,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
         _rightHandOrigin = rightHand.transform.localPosition;
         _leftHandOrigin = leftHand.transform.localPosition;
+
+        slideEffect.active = false;
     }
 
     void Update()
@@ -60,6 +66,9 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         //Determine Controller Height
         cc.height = (sliding) ? .7f : 2;
         _groundedRayLength = (sliding) ? .1f : .9f;
+
+        //Slide Effect
+        slideEffect.active = (sliding && _slideDecay > .6f);
 
         //Check Grounded / Above
         checkGrounded();
@@ -89,6 +98,9 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         if (!sliding) cc.Move(_moveDirection * Time.deltaTime);
         cc.Move(new Vector3(0, _vMovement, 0) * Time.deltaTime);
 
+        if (Input.GetKeyDown(KeyCode.V)) {
+            Instantiate(EnemyPrefab, transform.position + transform.forward * 5, Quaternion.identity);
+        }
         
     }
 
