@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     private float moveSpeed, jumpForce, gravity, maxHealth;
 
     //Backing Variables
-    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength, _health;
+    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength, _health, _reloadTimer;
     int _bulletsLeft, _maxAmmo = 6;
     bool crouched, jumping, grounded, overHead, sliding;
 
@@ -33,6 +33,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     GameObject EnemyPrefab;
     [SerializeField]
     GameObject GunMag;
+    [SerializeField]
+    PlayerFire PlayerFire;
 
     void Start()
     {
@@ -110,7 +112,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         if (Input.GetKeyDown(KeyCode.R) && _bulletsLeft != _maxAmmo) {
             reload();
         }
-        
+
+        _reloadTimer += Time.deltaTime;
+        PlayerFire.canFire = (_reloadTimer > .5f);
+
     }
 
     //Check if the player is on the ground
@@ -167,6 +172,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         rightHandAnimator.Play("gun_reload", -1, 0);
         GunMag.GetComponent<Animator>().Play("Magazine_air", -1, 0);
         _bulletsLeft = _maxAmmo;
+        _reloadTimer = 0;
     }
 
     public void Damage(int damageTaken) {
@@ -174,8 +180,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     }
 
     public void FirePistol() {
-        rightHandAnimator.Play("RightHandPistolShoot", -1, 0);
-        _bulletsLeft--;
+        if (_reloadTimer > .5f) {
+            rightHandAnimator.Play("RightHandPistolShoot", -1, 0);
+            _bulletsLeft--;
+        }
     }
 
     public void LiquidUpdate() {

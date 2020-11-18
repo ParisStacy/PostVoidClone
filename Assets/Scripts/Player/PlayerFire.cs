@@ -7,6 +7,7 @@ public class PlayerFire : MonoBehaviour
     GameObject camera;
     PlayerLook playerLookScript;
     public GameObject bulletHolePrefab;
+    public bool canFire;
 
 
     void Start()
@@ -15,14 +16,15 @@ public class PlayerFire : MonoBehaviour
         playerLookScript = camera.GetComponent<PlayerLook>();
     }
 
-    void Fire()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit)) {
-            if (hit.transform.tag == "Enemy") {
-                hit.transform.GetComponent<HitboxBehavior>().Damage(1);
+    void Fire() {
+        if (canFire) {
+            RaycastHit hit;
+            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit)) {
+                if (hit.transform.tag == "Enemy") {
+                    hit.transform.GetComponent<HitboxBehavior>().Damage(1);
+                }
             }
+            playerLookScript.Recoil(3);
         }
-        playerLookScript.Recoil(3);
     }
 }
