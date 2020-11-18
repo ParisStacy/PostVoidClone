@@ -28,6 +28,8 @@ public class EnemyGunner : MonoBehaviour, IEnemy
     Animator gunnerAnimator;
     [SerializeField]
     GameObject healingOrbPrefab;
+    [SerializeField]
+    GameObject drippingBloodPrefab;
 
     GameObject player;
     TextMesh stateText;
@@ -158,6 +160,10 @@ public class EnemyGunner : MonoBehaviour, IEnemy
                 transform.GetChild(0).gameObject.active = false;
                 transform.GetChild(1).gameObject.active = false;
                 Instantiate(healingOrbPrefab, transform.position + new Vector3(0, 1.7f, 0), Quaternion.identity);
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, Vector3.up, out hit, 3)) {
+                    Instantiate(drippingBloodPrefab, transform.position, transform.rotation);
+                }
             }
 
         }

@@ -492,6 +492,7 @@ MonoBehaviour:
   debugTextObject: {fileID: 7669790127542874284}
   gunnerAnimator: {fileID: 7669790127432835929}
   healingOrbPrefab: {fileID: 9131607020624145154, guid: 13dc9c83aa43348468aed0e338dd4353, type: 3}
+  drippingBloodPrefab: {fileID: 5748821860266267870, guid: ed1d32f5dcba50a46a38b63be58a3a17, type: 3}
 --- !u!114 &7669790128591461365
 MonoBehaviour:
   m_ObjectHideFlags: 0

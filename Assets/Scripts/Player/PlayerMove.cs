@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     //Backing Variables
     float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength, _health;
+    int _bulletsLeft, _maxAmmo = 6;
     bool crouched, jumping, grounded, overHead, sliding;
 
     //Vectors
@@ -30,6 +31,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     GameObject slideEffect;
     [SerializeField]
     GameObject EnemyPrefab;
+    [SerializeField]
+    GameObject GunMag;
 
     void Start()
     {
@@ -43,6 +46,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         _leftHandOrigin = leftHand.transform.localPosition;
 
         slideEffect.active = false;
+
+        _bulletsLeft = _maxAmmo;
     }
 
     void Update()
@@ -61,7 +66,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
         }
 
-        if (Input.GetMouseButtonDown(0)) FirePistol();
+        if (Input.GetMouseButtonDown(0) && _bulletsLeft > 0) FirePistol();
 
         //Determine Controller Height
         cc.height = (sliding) ? .7f : 2;
@@ -69,7 +74,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
         //Slide Effect
         slideEffect.active = (sliding && _slideDecay > .6f);
-
+         
         //Check Grounded / Above
         checkGrounded();
         checkAbove();
@@ -100,6 +105,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
         if (Input.GetKeyDown(KeyCode.V)) {
             Instantiate(EnemyPrefab, transform.position + transform.forward * 5, Quaternion.identity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && _bulletsLeft != _maxAmmo) {
+            reload();
         }
         
     }
@@ -145,7 +154,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         cc.Move(_slideDirection * Time.deltaTime);
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
             sliding = false;
-            cc.Move(new Vector3(0, .7f, 0));
+            cc.Move(new Vector3(0, .9f, 0));
         }
 
         //Decay Slide
@@ -154,12 +163,19 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         _decayRate += .000003f;
     }
 
+    void reload() {
+        rightHandAnimator.Play("gun_reload", -1, 0);
+        GunMag.GetComponent<Animator>().Play("Magazine_air", -1, 0);
+        _bulletsLeft = _maxAmmo;
+    }
+
     public void Damage(int damageTaken) {
         _health -= damageTaken;
     }
 
     public void FirePistol() {
         rightHandAnimator.Play("RightHandPistolShoot", -1, 0);
+        _bulletsLeft--;
     }
 
     public void LiquidUpdate() {
