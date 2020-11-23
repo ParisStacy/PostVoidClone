@@ -23,6 +23,9 @@ public class PlayerFire : MonoBehaviour
                 if (hit.transform.tag == "Enemy") {
                     hit.transform.GetComponent<HitboxBehavior>().Damage(1);
                 }
+                if (hit.transform.tag == "Untagged") {
+                    Instantiate(bulletHolePrefab, hit.point + (hit.normal * .05f), Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                }
             }
             playerLookScript.Recoil(3);
         }

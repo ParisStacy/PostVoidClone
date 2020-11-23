@@ -35,6 +35,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     GameObject GunMag;
     [SerializeField]
     PlayerFire PlayerFire;
+    [SerializeField]
+    Animator muzzleFlash;
 
     void Start()
     {
@@ -182,6 +184,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     public void FirePistol() {
         if (_reloadTimer > .5f) {
             rightHandAnimator.Play("RightHandPistolShoot", -1, 0);
+            muzzleFlash.Play("muzzle_flash_anim", -1, 0);
             _bulletsLeft--;
         }
     }
