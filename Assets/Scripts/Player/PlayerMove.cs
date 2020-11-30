@@ -65,7 +65,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             sliding = true;
             _slideDecay = 1.5f;
-            _decayRate = .0005f;
+            _decayRate = .005f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
         }
@@ -147,8 +147,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         Vector3 leftHandDesired;
         leftHandDesired = (sliding) ? (_leftHandOrigin + new Vector3(.05f, -.01f, 0)) : (_leftHandOrigin);
 
-        leftHand.transform.localPosition = Vector3.Lerp(leftHand.transform.localPosition, leftHandDesired, .05f);
-        rightHand.transform.localPosition = Vector3.Lerp(rightHand.transform.localPosition, rightHandDesired, .05f);
+        leftHand.transform.localPosition = Vector3.Lerp(leftHand.transform.localPosition, leftHandDesired, .1f);
+        rightHand.transform.localPosition = Vector3.Lerp(rightHand.transform.localPosition, rightHandDesired, .1f);
 
 
     }
@@ -167,7 +167,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         //Decay Slide
         _slideDecay -= _decayRate;
         _slideDecay = Mathf.Clamp(_slideDecay, 0, 1.5f);
-        _decayRate += .000003f;
+        _decayRate += .000005f;
     }
 
     void reload() {
