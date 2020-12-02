@@ -8,7 +8,8 @@ public class PlayerFire : MonoBehaviour
     PlayerLook playerLookScript;
     public GameObject bulletHolePrefab;
     public bool canFire;
-
+    public AudioClip fireSound;
+    public AudioSource gunSource;
 
     void Start()
     {
@@ -18,6 +19,8 @@ public class PlayerFire : MonoBehaviour
 
     void Fire() {
         if (canFire) {
+            gunSource.clip = fireSound;
+            gunSource.Play();
             RaycastHit hit;
             if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit)) {
                 if (hit.transform.tag == "Enemy") {

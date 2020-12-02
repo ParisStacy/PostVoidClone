@@ -38,6 +38,12 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     [SerializeField]
     Animator muzzleFlash;
 
+    //Sounds
+    [SerializeField]
+    AudioSource gunSource, playerSource;
+    [SerializeField]
+    AudioClip reloadSound;
+   
     void Start()
     {
         //Initialize Components
@@ -171,6 +177,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     }
 
     void reload() {
+        gunSource.clip = reloadSound;
+        gunSource.Play();
         rightHandAnimator.Play("gun_reload", -1, 0);
         GunMag.GetComponent<Animator>().Play("Magazine_air", -1, 0);
         _bulletsLeft = _maxAmmo;
