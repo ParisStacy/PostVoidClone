@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     private float moveSpeed, jumpForce, gravity, maxHealth;
 
     //Backing Variables
-    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength, _health, _reloadTimer;
+    float _vMovement, _cameraZ, _startingSlideSpeed, _slideDecay, _decayRate, _groundedRayLength, _health, _reloadTimer, _damageEffectTimer;
     int _bulletsLeft, _maxAmmo = 6;
     bool crouched, jumping, grounded, overHead, sliding;
 
@@ -30,6 +30,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     [SerializeField]
     GameObject slideEffect;
     [SerializeField]
+    GameObject damageEffect;
+    [SerializeField]
     GameObject EnemyPrefab;
     [SerializeField]
     GameObject GunMag;
@@ -42,7 +44,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     [SerializeField]
     AudioSource gunSource, playerSource;
     [SerializeField]
-    AudioClip reloadSound;
+    AudioClip reloadSound, damageSound, slideSound;
    
     void Start()
     {
@@ -56,6 +58,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         _leftHandOrigin = leftHand.transform.localPosition;
 
         slideEffect.active = false;
+        damageEffect.active = false;
 
         _bulletsLeft = _maxAmmo;
     }
@@ -74,6 +77,9 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
             _decayRate = .005f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
+            gunSource.clip = slideSound;
+            gunSource.pitch = 1;
+            gunSource.Play();
         }
 
         if (Input.GetMouseButtonDown(0) && _bulletsLeft > 0) FirePistol();
@@ -156,6 +162,9 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         leftHand.transform.localPosition = Vector3.Lerp(leftHand.transform.localPosition, leftHandDesired, .1f);
         rightHand.transform.localPosition = Vector3.Lerp(rightHand.transform.localPosition, rightHandDesired, .1f);
 
+        _damageEffectTimer -= Time.deltaTime;
+        damageEffect.active = _damageEffectTimer > 0;
+
 
     }
 
@@ -187,6 +196,16 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     public void Damage(int damageTaken) {
         _health -= damageTaken;
+
+        float xScale = Random.Range(0, 2) == 0 ? -.099f : .099f;
+        float yScale = Random.Range(0, 2) == 0 ? -.099f : .099f;
+
+        damageEffect.transform.localScale = new Vector3(xScale, yScale, .099f);
+
+        _damageEffectTimer = .5f;
+        gunSource.clip = damageSound;
+        gunSource.pitch = Random.Range(.8f, 1.1f);
+        gunSource.Play();
     }
 
     public void FirePistol() {
