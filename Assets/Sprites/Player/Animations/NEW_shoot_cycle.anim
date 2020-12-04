@@ -23,7 +23,7 @@ AnimationClip:
       value: {fileID: -3266590702671534837, guid: 978ad7d2cc750dc46b4779d4c9191bfd, type: 3}
     - time: 0.083333336
       value: {fileID: -4300199788568320920, guid: 978ad7d2cc750dc46b4779d4c9191bfd, type: 3}
-    - time: 0.16666667
+    - time: 0.5
       value: {fileID: -7944426021500469483, guid: 978ad7d2cc750dc46b4779d4c9191bfd, type: 3}
     attribute: m_Sprite
     path: 
@@ -52,7 +52,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -71,4 +71,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: Fire
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
