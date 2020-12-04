@@ -28,7 +28,7 @@ public class Pathmaker : MonoBehaviour {
     int _forwardCount;
     float _spawnNewChance;
 
-    private NavMeshBuilder NavBuilder;
+//    private NavMeshBuilder NavBuilder;
 
     int[] directions = new int[] { 0, 0, 90, -90};
 
@@ -107,7 +107,7 @@ public class Pathmaker : MonoBehaviour {
             }
         }
 
-        NavMeshBuilder builder;
+//        NavMeshBuilder builder;
        
 
         ending = true;
