@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyGunner : MonoBehaviour
+public class EnemyGunner : MonoBehaviour, IEnemy
 {
 
     [Header("Tuning")]
@@ -16,7 +16,7 @@ public class EnemyGunner : MonoBehaviour
 
     bool active = false;
 
-    float _t;
+    float _t, health = 9;
     int shotsToFire;
 
     Vector3 navPoint;
@@ -26,6 +26,14 @@ public class EnemyGunner : MonoBehaviour
     GameObject debugTextObject;
     [SerializeField]
     Animator gunnerAnimator;
+    [SerializeField]
+    GameObject healingOrbPrefab;
+    [SerializeField]
+    GameObject drippingBloodPrefab;
+    [SerializeField]
+    AudioSource GunnerAudioSource;
+    [SerializeField]
+    AudioClip deathSound;
 
     GameObject player;
     TextMesh stateText;
@@ -51,8 +59,11 @@ public class EnemyGunner : MonoBehaviour
         //Is Active?
         active = (Vector3.Distance(transform.position, player.transform.position) < detectionDistance);
 
+        //Is Dead?
+        if (health <= 0) myState = enemyGunnerState.dead;
+
         //Determine Speed
-        NavAgent.speed = (myState == enemyGunnerState.dash) ? dashSpeed : moveSpeed;
+        NavAgent.speed = Mathf.Lerp(NavAgent.speed, (myState == enemyGunnerState.dash) ? dashSpeed : moveSpeed, .01f);
 
         //Determine Update Loop if Active
         if (active)
@@ -67,6 +78,8 @@ public class EnemyGunner : MonoBehaviour
                     break;
                 case (enemyGunnerState.move):
                     UpdateMove();
+                    break;
+                case (enemyGunnerState.dead):
                     break;
             }
         }
@@ -99,16 +112,16 @@ public class EnemyGunner : MonoBehaviour
         if (_t < 0 || Vector3.Distance(transform.position, navPoint) < .5f)
         {
             NavAgent.SetDestination(transform.position);
-            ChooseBehavior(0);
+            ChooseBehavior(9);
         }
     }
 
     void ChooseBehavior(int numberToSkip)
     {
+
         int ranNum = ranNum = Random.Range(0, 3);
         while (ranNum == numberToSkip) {
             ranNum = Random.Range(0, 3);
-            Debug.Log("Check new Number");
         }
 
         if (ranNum == 0) {
@@ -124,7 +137,7 @@ public class EnemyGunner : MonoBehaviour
         } else if (ranNum == 2) {
             myState = enemyGunnerState.shoot;
             shotsToFire = Random.Range(1, 2);
-            _t = .333f * shotsToFire;
+            _t = .4f * shotsToFire;
             NavAgent.SetDestination(transform.position);
         }
     }
@@ -134,6 +147,32 @@ public class EnemyGunner : MonoBehaviour
         navPoint = origin.transform.position + new Vector3(Random.Range(-range, range), 0, Random.Range(-range, range));
         while (Vector3.Distance(origin.transform.position, navPoint) < innerRange) {
             navPoint = origin.transform.position + new Vector3(Random.Range(-range, range), 0, Random.Range(-range, range));
+        }
+    }
+
+    public void takeDamage(float damage) {
+        if (myState != enemyGunnerState.dead) {
+
+            gunnerAnimator.Play("gunner_hurt_ani", -1, 0);
+            NavAgent.speed = 0;
+            health -= damage;
+
+            if (health <= 0) {
+                GunnerAudioSource.clip = deathSound;
+                GunnerAudioSource.Play();
+
+                myState = enemyGunnerState.dead;
+                gunnerAnimator.Play("gunner_death_ani", -1, 0);
+                NavAgent.SetDestination(transform.position);
+                transform.GetChild(0).gameObject.active = false;
+                transform.GetChild(1).gameObject.active = false;
+                Instantiate(healingOrbPrefab, transform.position + new Vector3(0, 1.7f, 0), Quaternion.identity);
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, Vector3.up, out hit, 3)) {
+                    Instantiate(drippingBloodPrefab, transform.position, transform.rotation);
+                }
+            }
+
         }
     }
 }
