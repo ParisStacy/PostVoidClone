@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 // MAZE PROC GEN LAB
 // all students: complete steps 1-6, as listed in this file
@@ -10,22 +11,33 @@ public class Pathmaker : MonoBehaviour {
 
     public static int tileTotal = 0;
 
+    bool ending;
+
     public static List<GameObject> tiles = new List<GameObject>();
 
     int _tileCount = 0;
-    public Transform floorPrefab;
-    public Transform pathmakerSpherePrefab;
-    public GameObject camera;
+    public GameObject floorPrefab;
+    public GameObject roofPrefab;
+    public GameObject wallPrefab;
+
+    public GameObject enemyPrefab;
+
+    public GameObject pathmakerSpherePrefab;
 
     int _maxTileCount;
+    int _forwardCount;
     float _spawnNewChance;
 
-    public Sprite[] tileTypes;
+    private NavMeshBuilder NavBuilder;
 
-    Vector3 avgPosition;
+    int[] directions = new int[] { 0, 0, 90, -90};
+
+    [Header("Individual Config")]
+    public bool primary;
+    public int maxTileCount; 
 
     void Start() {
-        _maxTileCount = Random.Range(40, 60);
+        _maxTileCount = maxTileCount;
         _spawnNewChance = Random.Range(.95f, 1.0f);
     }
 
@@ -34,39 +46,72 @@ public class Pathmaker : MonoBehaviour {
         Debug.Log(tileTotal);
 
         if (_tileCount < _maxTileCount && tileTotal < 500) {
-            float numGen = Random.Range(0.0f, 1.0f);
-            if (numGen < 0.25f) transform.Rotate(0, 90, 0);
-            else if (numGen > .25f && numGen < 0.5f) transform.Rotate(0, -90, 0);
-            else if (numGen > _spawnNewChance) Instantiate(pathmakerSpherePrefab, transform.position, Quaternion.identity);
+            int numGen = Random.Range(0,directions.Length);
+            int rotation = directions[numGen];
 
-            transform.position += transform.forward * 5;
-            Collider[] hitCollider = Physics.OverlapSphere(transform.position, .1f);
+            if (rotation == 0 && primary) _forwardCount++; 
+
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, rotation, 0));
+
+            float instantiateGen = Random.Range(0.0f, 1.0f);
+            if (instantiateGen < .2f && primary) {
+                GameObject newPathMaker = Instantiate(pathmakerSpherePrefab, transform.position, Quaternion.identity);
+                newPathMaker.GetComponent<Pathmaker>().maxTileCount = 4;
+                newPathMaker.GetComponent<Pathmaker>().primary = false;
+
+                Instantiate(enemyPrefab, transform.position + Vector3.down * 1.5f, Quaternion.identity);
+            }
+
+//            else if (numGen > _spawnNewChance) Instantiate(pathmakerSpherePrefab, transform.position, Quaternion.identity);
+
+            transform.position += transform.forward * 3;
+            Collider[] hitCollider = Physics.OverlapSphere(transform.position - (Vector3.up * 3), .1f);
 
             if (hitCollider.Length == 0) {
                 Debug.Log("Instantiate");
-                GameObject newTile = Instantiate(floorPrefab, transform.position, Quaternion.identity).gameObject;
+                GameObject floorTile = Instantiate(floorPrefab, transform.position - (Vector3.up * 3), Quaternion.identity);
+                GameObject roofTile = Instantiate(roofPrefab, transform.position - (Vector3.down * 3), Quaternion.identity);
 
-                int tilePick;
-
-                if (numGen < .1f) tilePick = 1;
-                else if (numGen > .9f) tilePick = 2;
-                else tilePick = 0;
-
-                newTile.GetComponentInChildren<SpriteRenderer>().sprite = tileTypes[tilePick];
-
-                tiles.Add(newTile);
+                tiles.Add(floorTile);
 
                 _tileCount++;
                 tileTotal++;
             }
+
         } else {
-            if (tileTotal > 201) {
-                Destroy(gameObject);
-            } else {
+            if (primary && _forwardCount < 50) {
                 _tileCount = 0;
+            } else {
+                if (primary && !ending) {
+                    CreateWalls();
+                } else {
+                    Destroy(gameObject);
+                }
             }
         }
 	}
+
+    public void CreateWalls() {
+        foreach(GameObject tile in tiles) {
+            if (!Physics.CheckSphere(tile.transform.position + Vector3.forward * 3, .5f)) {
+                Instantiate(wallPrefab, tile.transform.position + (Vector3.forward * 3) + (Vector3.up * 4.5f), Quaternion.identity);
+            }
+            if (!Physics.CheckSphere(tile.transform.position + Vector3.back * 3, .5f)) {
+                Instantiate(wallPrefab, tile.transform.position + (Vector3.back * 3) + (Vector3.up * 4.5f), Quaternion.identity);
+            }
+            if (!Physics.CheckSphere(tile.transform.position + Vector3.right * 3, .5f)) {
+                Instantiate(wallPrefab, tile.transform.position + (Vector3.right * 3) + (Vector3.up * 4.5f), Quaternion.identity);
+            }
+            if (!Physics.CheckSphere(tile.transform.position + Vector3.left * 3, .5f)) {
+                Instantiate(wallPrefab, tile.transform.position + (Vector3.left * 3) + (Vector3.up * 4.5f), Quaternion.identity);
+            }
+        }
+
+        NavMeshBuilder builder;
+       
+
+        ending = true;
+    }
 
     public void Reset() {
         tileTotal = 0;
