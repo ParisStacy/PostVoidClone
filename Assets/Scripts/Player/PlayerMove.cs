@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     [SerializeField]
     AudioSource gunSource, playerSource;
     [SerializeField]
-    AudioClip reloadSound, damageSound, slideSound;
+    AudioClip reloadSound, damageSound, slideSound, walkSound, jumpSound;
    
     void Start()
     {
@@ -77,12 +77,20 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
             _decayRate = .005f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
-            gunSource.clip = slideSound;
-            gunSource.pitch = 1;
-            gunSource.Play();
+            playerSource.clip = slideSound;
+            playerSource.pitch = 1;
+            playerSource.Play();
         }
 
         if (Input.GetMouseButtonDown(0) && _bulletsLeft > 0) FirePistol();
+
+        //Step Audio
+        if (_moveInput != Vector2.zero && !sliding && grounded) {
+            playerSource.clip = walkSound;
+            if (!playerSource.isPlaying) {
+                playerSource.Play();
+            }
+        }
 
         //Determine Controller Height
         cc.height = (sliding) ? .7f : 2;
@@ -109,7 +117,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         if (!grounded) _vMovement -= gravity * Time.deltaTime;
         else _vMovement = 0;
 
-        if (grounded && jumping && !sliding) _vMovement += jumpForce;
+        if (grounded && jumping && !sliding) { _vMovement += jumpForce; playerSource.clip = jumpSound; playerSource.Play(); }
         if (overHead) _vMovement = -1;
 
         //Slide
@@ -203,9 +211,9 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         damageEffect.transform.localScale = new Vector3(xScale, yScale, .099f);
 
         _damageEffectTimer = .5f;
-        gunSource.clip = damageSound;
-        gunSource.pitch = Random.Range(.8f, 1.1f);
-        gunSource.Play();
+        playerSource.clip = damageSound;
+        playerSource.pitch = Random.Range(.8f, 1.1f);
+        playerSource.Play();
     }
 
     public void FirePistol() {

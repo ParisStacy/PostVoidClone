@@ -30,6 +30,10 @@ public class EnemyGunner : MonoBehaviour, IEnemy
     GameObject healingOrbPrefab;
     [SerializeField]
     GameObject drippingBloodPrefab;
+    [SerializeField]
+    AudioSource GunnerAudioSource;
+    [SerializeField]
+    AudioClip deathSound;
 
     GameObject player;
     TextMesh stateText;
@@ -154,6 +158,9 @@ public class EnemyGunner : MonoBehaviour, IEnemy
             health -= damage;
 
             if (health <= 0) {
+                GunnerAudioSource.clip = deathSound;
+                GunnerAudioSource.Play();
+
                 myState = enemyGunnerState.dead;
                 gunnerAnimator.Play("gunner_death_ani", -1, 0);
                 NavAgent.SetDestination(transform.position);
