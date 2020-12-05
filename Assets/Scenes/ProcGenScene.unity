@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 0a9b1828f1257fe49831664b153f2cb4, type: 2}
 --- !u!4 &21282156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
@@ -192,6 +192,10 @@ PrefabInstance:
     - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
       propertyPath: m_Name
       value: LeafPrefab (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
@@ -684,6 +688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeafPrefab (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
 --- !u!4 &325128349 stripped
@@ -1118,6 +1126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeafPrefab (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
 --- !u!4 &589342520 stripped
@@ -1376,6 +1388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeafPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
 --- !u!4 &749180805 stripped
@@ -1571,6 +1587,10 @@ PrefabInstance:
     - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
       propertyPath: m_Name
       value: LeafPrefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
@@ -1892,6 +1912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeafPrefab (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
 --- !u!1001 &1096435245
@@ -1948,6 +1972,10 @@ PrefabInstance:
     - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
       propertyPath: m_Name
       value: LeafPrefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
@@ -2077,6 +2105,10 @@ PrefabInstance:
     - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
       propertyPath: m_Name
       value: LeafPrefab (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
@@ -2569,6 +2601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeafPrefab (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
 --- !u!1001 &1548005587
@@ -2625,6 +2661,10 @@ PrefabInstance:
     - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
       propertyPath: m_Name
       value: LeafPrefab (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
@@ -3330,6 +3370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeafPrefab (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
 --- !u!1001 &1882663325
@@ -3924,6 +3968,10 @@ PrefabInstance:
     - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
       propertyPath: m_Name
       value: LeafPrefab (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963659587050386358, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47567be35a105aa47a3c7b1a88aae27f, type: 3}

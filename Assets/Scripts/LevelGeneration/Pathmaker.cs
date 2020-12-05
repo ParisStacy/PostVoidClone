@@ -11,7 +11,7 @@ public class Pathmaker : MonoBehaviour {
 
     public static int tileTotal = 0;
 
-    bool ending;
+    bool generationEnd;
 
     public static List<GameObject> tiles = new List<GameObject>();
 
@@ -27,6 +27,8 @@ public class Pathmaker : MonoBehaviour {
     int _maxTileCount;
     int _forwardCount;
     float _spawnNewChance;
+
+    NavMeshSurface[] navMeshSurfaces;
 
 //    private NavMeshBuilder NavBuilder;
 
@@ -82,7 +84,7 @@ public class Pathmaker : MonoBehaviour {
             if (primary && _forwardCount < 50) {
                 _tileCount = 0;
             } else {
-                if (primary && !ending) {
+                if (primary && !generationEnd) {
                     CreateWalls();
                 } else {
                     Destroy(gameObject);
@@ -92,6 +94,9 @@ public class Pathmaker : MonoBehaviour {
 	}
 
     public void CreateWalls() {
+
+        tiles[0].GetComponent<NavMeshSurface>().BuildNavMesh();
+
         foreach(GameObject tile in tiles) {
             if (!Physics.CheckSphere(tile.transform.position + Vector3.forward * 3, .5f)) {
                 Instantiate(wallPrefab, tile.transform.position + (Vector3.forward * 3) + (Vector3.up * 4.5f), Quaternion.identity);
@@ -107,10 +112,9 @@ public class Pathmaker : MonoBehaviour {
             }
         }
 
-//        NavMeshBuilder builder;
        
 
-        ending = true;
+        generationEnd = true;
     }
 
     public void Reset() {
