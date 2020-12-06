@@ -95,5 +95,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 6916001402618316717, guid: d753f0cf85473314fb567d075406f31b, type: 3}
+  roofPrefab: {fileID: 899580503736092463, guid: 85b7a31d842d3b84b8e3e4bfe37963dd, type: 3}
+  wallPrefab: {fileID: 6290538426213132403, guid: f85435a8e0cb3ff4993d730b0b61ab00, type: 3}
+  enemyPrefab: {fileID: 7669790128591461361, guid: 85f35d4edafe8f1429e00164e9d6984b, type: 3}
+  endZonePrefab: {fileID: 1760960033946056848, guid: e962bd5e39cd95d4d89d8d6e507a6309, type: 3}
   pathmakerSpherePrefab: {fileID: 8865445368312082885}
-  tileTypes: []
+  propPrefab: {fileID: 8661621798129711665, guid: fc1af0acf1cf5ef45bc8454e6e679adb, type: 3}
+  InstantiatedObjects: {fileID: 0}
+  primary: 1
+  maxTileCount: 100
