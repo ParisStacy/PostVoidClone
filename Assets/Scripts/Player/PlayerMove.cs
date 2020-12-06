@@ -39,6 +39,8 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
     PlayerFire PlayerFire;
     [SerializeField]
     Animator muzzleFlash;
+    [SerializeField]
+    Animator crosshairAnimator;
 
     //Sounds
     [SerializeField]
@@ -108,6 +110,14 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
         LiquidUpdate();
         _health -= Time.deltaTime;
         _health = Mathf.Clamp(_health, 0, maxHealth);
+
+        //Update Crosshair
+        if (_health < 3) {
+            if (!crosshairAnimator.GetCurrentAnimatorStateInfo(0).IsName("CountdownTimer"))
+                    crosshairAnimator.Play("CountdownTimer", 0, 0);
+        } else {
+            crosshairAnimator.Play("Default", 0, 0);
+        }
 
         //Configure Movement Vector
         _moveDirection = (_moveInput.x * transform.right + _moveInput.y * transform.forward).normalized;
@@ -231,5 +241,10 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     public void Heal() {
         _health += 4;
+    }
+
+    public void Respawn() {
+        _health = maxHealth;
+        _bulletsLeft = _maxAmmo;
     }
 }

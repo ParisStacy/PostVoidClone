@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c0bca6b2a3a8e44845e0b9243be3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionDistance: 50
+  detectionDistance: 20
   moveTime: 0.7
   dashOffset: 3
   moveOffset: 3
