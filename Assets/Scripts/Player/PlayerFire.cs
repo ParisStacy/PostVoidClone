@@ -7,6 +7,7 @@ public class PlayerFire : MonoBehaviour
     GameObject camera;
     PlayerLook playerLookScript;
     public GameObject bulletHolePrefab;
+    public GameObject instantiatedObjects;
     public bool canFire;
     public AudioClip fireSound;
     public AudioSource gunSource;
@@ -29,7 +30,8 @@ public class PlayerFire : MonoBehaviour
                     }
                 }
                 if (hit.transform.tag == "Untagged") {
-                    Instantiate(bulletHolePrefab, hit.point + (hit.normal * .05f), Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + (hit.normal * .05f), Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    bulletHole.transform.parent = instantiatedObjects.transform;
                 }
             }
             playerLookScript.Recoil(3);

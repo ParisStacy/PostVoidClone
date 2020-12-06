@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class CrosshairTriggers : MonoBehaviour
 {
 
+    [SerializeField]
+    AudioSource crosshairSource;
+    [SerializeField]
+    AudioClip clocktickClip, deathSound;
 
     void Start()
     {
@@ -15,6 +19,10 @@ public class CrosshairTriggers : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Tick() {
+
     }
 
     public void Death() {

@@ -594,7 +594,13 @@ MonoBehaviour:
   healingOrbPrefab: {fileID: 9131607020624145154, guid: 13dc9c83aa43348468aed0e338dd4353, type: 3}
   drippingBloodPrefab: {fileID: 5748821860266267870, guid: ed1d32f5dcba50a46a38b63be58a3a17, type: 3}
   GunnerAudioSource: {fileID: 1277282993}
-  deathSound: {fileID: 8300000, guid: a9b2bdffb3c14ba4d87a23b3a147d65d, type: 3}
+  deathSound: {fileID: 8300000, guid: 26d0bca405721694cbccd86bd2da6d8d, type: 3}
+  hurtSound: {fileID: 8300000, guid: cf9f5a18f344dad4fbdfc95421ee1bfd, type: 3}
+  idleSounds:
+  - {fileID: 8300000, guid: 8fe0892b73dc63a4bacd1e8c8dc9d5a6, type: 3}
+  - {fileID: 8300000, guid: 19162df38785036469b41164b9d0f561, type: 3}
+  - {fileID: 8300000, guid: 8a34f5cd95b89924e882c9b5ff074629, type: 3}
+  - {fileID: 8300000, guid: b3a49b001acda6f4b8e705ba5d7022c6, type: 3}
 --- !u!114 &7669790128591461365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,7 +691,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.63
       inSlope: 0
       outSlope: 0
       tangentMode: 0

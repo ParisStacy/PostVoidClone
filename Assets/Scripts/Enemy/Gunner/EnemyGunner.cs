@@ -34,6 +34,10 @@ public class EnemyGunner : MonoBehaviour, IEnemy
     AudioSource GunnerAudioSource;
     [SerializeField]
     AudioClip deathSound;
+    [SerializeField]
+    AudioClip hurtSound;
+    [SerializeField]
+    AudioClip[] idleSounds;
 
     GameObject player;
     TextMesh stateText;
@@ -119,6 +123,11 @@ public class EnemyGunner : MonoBehaviour, IEnemy
     void ChooseBehavior(int numberToSkip)
     {
 
+        if (!GunnerAudioSource.isPlaying) {
+            GunnerAudioSource.clip = idleSounds[Random.Range(0, idleSounds.Length)];
+            GunnerAudioSource.Play();
+        }
+
         int ranNum = ranNum = Random.Range(0, 3);
         while (ranNum == numberToSkip) {
             ranNum = Random.Range(0, 3);
@@ -157,6 +166,9 @@ public class EnemyGunner : MonoBehaviour, IEnemy
             NavAgent.speed = 0;
             health -= damage;
 
+            GunnerAudioSource.clip = hurtSound;
+            GunnerAudioSource.Play();
+
             if (health <= 0) {
                 GunnerAudioSource.clip = deathSound;
                 GunnerAudioSource.Play();
@@ -169,7 +181,8 @@ public class EnemyGunner : MonoBehaviour, IEnemy
                 Instantiate(healingOrbPrefab, transform.position + new Vector3(0, 1.7f, 0), Quaternion.identity);
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, Vector3.up, out hit, 3)) {
-                    Instantiate(drippingBloodPrefab, transform.position, transform.rotation);
+                    GameObject drippingBlood = Instantiate(drippingBloodPrefab, transform.position, transform.rotation);
+                    drippingBlood.transform.parent = gameObject.transform;
                 }
             }
 

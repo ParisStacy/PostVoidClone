@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
 
     //Sounds
     [SerializeField]
-    AudioSource gunSource, playerSource;
+    AudioSource gunSource, playerSource, footSource;
     [SerializeField]
     AudioClip reloadSound, damageSound, slideSound, walkSound, jumpSound;
    
@@ -79,18 +79,18 @@ public class PlayerMove : MonoBehaviour, IDamage<int>
             _decayRate = .005f;
             _slideDirection = transform.forward * moveSpeed;
             _startingSlideSpeed = (_moveInput != Vector2.zero) ? moveSpeed : 0;
-            playerSource.clip = slideSound;
-            playerSource.pitch = 1;
-            playerSource.Play();
+            footSource.clip = slideSound;
+            footSource.pitch = 1;
+            footSource.Play();
         }
 
         if (Input.GetMouseButtonDown(0) && _bulletsLeft > 0) FirePistol();
 
         //Step Audio
         if (_moveInput != Vector2.zero && !sliding && grounded) {
-            playerSource.clip = walkSound;
-            if (!playerSource.isPlaying) {
-                playerSource.Play();
+            footSource.clip = walkSound;
+            if (!footSource.isPlaying) {
+                footSource.Play();
             }
         }
 
