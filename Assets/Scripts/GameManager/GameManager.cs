@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject InstantiatedObjects;
     public GameObject pathMakerPrefab;
+    public GameObject playerPrefab;
 
     void Start()
     {
-        
+        Reset();
     }
 
     void Update()
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
             Reset();
     }
 
-    void Reset() {
+    public void Reset() {
 
         Pathmaker.tiles.Clear();
 
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
         PrimaryPathMaker.GetComponent<Pathmaker>().primary = true;
         PrimaryPathMaker.transform.parent = InstantiatedObjects.transform;
 
+        Debug.Log("teleported player");
+        playerPrefab.transform.position = new Vector3(-4.5f, 17.0f, -4.5f);
+        playerPrefab.GetComponent<PlayerMove>().Respawn();
 
     }
 }
