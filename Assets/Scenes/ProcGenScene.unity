@@ -1535,7 +1535,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1654,7 +1658,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (4)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1982,6 +1990,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451e28e07b37d3b46942c3e2d8c5254d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crosshairSource: {fileID: 0}
+  clocktickClip: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!4 &492167484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
@@ -3340,7 +3351,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (8)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4116,7 +4131,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (15)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5705,6 +5724,10 @@ PrefabInstance:
       propertyPath: footSource
       value: 
       objectReference: {fileID: 436533979}
+    - target: {fileID: 9175191852062071099, guid: 428cc25a639dbad4fa884c3ed03058ec, type: 3}
+      propertyPath: walkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 648778a24ddc85541b2da6fa809feb2b, type: 3}
     - target: {fileID: 9175191852062071100, guid: 428cc25a639dbad4fa884c3ed03058ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.5

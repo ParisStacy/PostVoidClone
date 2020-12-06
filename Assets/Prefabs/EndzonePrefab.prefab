@@ -1128,7 +1128,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (48)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2198,7 +2202,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (46)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3140,7 +3148,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (47)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3586,7 +3598,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_Name
-      value: ForestWallPrefab (54)
+      value: CheckMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181635439022706262, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
+      propertyPath: m_TagString
+      value: CheckMe
       objectReference: {fileID: 0}
     - target: {fileID: 7181635439022706263, guid: 3f0631ed52268bc4d989ac5abda5cae0, type: 3}
       propertyPath: m_LocalPosition.x

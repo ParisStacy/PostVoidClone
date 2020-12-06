@@ -125,7 +125,11 @@ public class Pathmaker : MonoBehaviour {
 
         tiles[0].GetComponent<NavMeshSurface>().BuildNavMesh();
 
-        foreach(GameObject tile in tiles) {
+        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("CheckMe")) {
+            tiles.Add(tile);
+        }
+
+        foreach (GameObject tile in tiles) {
             if (!Physics.CheckSphere(tile.transform.position + Vector3.forward * 3, .5f)) {
                 GameObject newWall = Instantiate(wallPrefab, tile.transform.position + (Vector3.forward * 3) + (Vector3.up * 4.4f), Quaternion.identity);
                 newWall.transform.parent = InstantiatedObjects.transform;
